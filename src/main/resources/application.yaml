@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: payment
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/payment_db?currentSchema=public
+    username: user
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        format_sql: true
+        default_schema: public
+
+  flyway:
+    enabled: true
+    schemas: public
+    locations: "classpath:db"
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: earliest
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  cache:
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=5m
+
+logging:
+  level:
+    root: INFO
+    org:
+      example:
+        payment: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/spring-boot-application.log
+  filter:
+    exception:
+      enabled: false
