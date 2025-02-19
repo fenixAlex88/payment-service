@@ -18,9 +18,9 @@ public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
 
     @Override
-    @CacheEvict(value = "wallets", key = "#userId")
+    @CacheEvict(value = "wallets", key = "#waletDto.userId")
     @Transactional
-    public Wallet createWallet(Long userId) {
+    public Wallet createWallet(WaletDto waletDto) {
         if (walletRepository.existsByUserId(userId)) {
             throw new WalletAlreadyExistsException(userId);
         }

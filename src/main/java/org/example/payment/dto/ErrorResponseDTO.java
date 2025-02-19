@@ -1,10 +1,8 @@
 package org.example.payment.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Builder
-@Getter
+@Data
 public class ErrorResponseDTO {
     private String message;
     private int errorCode;

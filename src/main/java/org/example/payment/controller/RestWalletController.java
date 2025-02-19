@@ -16,6 +16,9 @@ import java.math.BigDecimal;
 public class RestWalletController implements WalletController {
     private final WalletService walletService;
 
+
+    // TODO: Нужно отправлять не Wallet, a WalletDto
+    // принимать тоже WalletDto
     @Override
     @PostMapping
     public ResponseEntity<Wallet> createWallet(@RequestParam Long userId) {

@@ -1,13 +1,10 @@
 package org.example.payment.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Setter
-@Getter
+@Data
 public class InventoryEvent {
     private Long orderId;
     private Long userId;
